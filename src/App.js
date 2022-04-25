@@ -4,7 +4,7 @@ import { autoCompleteData } from "./data/data.js";
 function App() {
   return (
     <div className="App">
-      <Autocomplete data={autoCompleteData} />
+      <Autocomplete data={autoCompleteData} label="Search Test" />
     </div>
   );
 }

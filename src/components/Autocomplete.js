@@ -2,7 +2,7 @@ import { useState } from "react";
 import SearchInput from "./SearchInput";
 import Suggestions from "./Suggestions";
 
-const AutoComplete = ({ data }) => {
+const AutoComplete = ({ data, label }) => {
   const [suggestions, setSuggestions] = useState([]);
   const [suggestionIndex, setSuggestionIndex] = useState(0);
   const [suggestionsActive, setSuggestionsActive] = useState(false);
@@ -73,6 +73,7 @@ const AutoComplete = ({ data }) => {
     <div className="autocomplete">
       <SearchInput
         value={value}
+        label={label}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />

@@ -35,10 +35,10 @@ const Input = styled("input", {
   "&:focus": { boxShadow: `0 0 0 2px black` },
 });
 
-const SearchInput = ({ value, onChange, onKeyDown }) => (
+const SearchInput = ({ value, label, onChange, onKeyDown }) => (
   <Flex>
     <Label htmlFor="firstName" css={{ lineHeight: "35px", marginRight: 15 }}>
-      First name
+      {label}
     </Label>
     <Input
       type="text"
