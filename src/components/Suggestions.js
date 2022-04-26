@@ -6,7 +6,7 @@ import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 const SCROLLBAR_SIZE = 5;
 
 const StyledScrollArea = styled(ScrollAreaPrimitive.Root, {
-  width: 275,
+  width: 277,
   height: 225,
   borderRadius: 4,
   overflow: "hidden",
@@ -57,7 +57,6 @@ const StyledCorner = styled(ScrollAreaPrimitive.Corner, {
   background: blackA.blackA8,
 });
 
-// Exports
 export const ScrollArea = StyledScrollArea;
 export const ScrollAreaViewport = StyledViewport;
 export const ScrollAreaScrollbar = StyledScrollbar;

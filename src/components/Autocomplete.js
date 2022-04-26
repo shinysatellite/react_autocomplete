@@ -55,6 +55,7 @@ const AutoComplete = ({
         label={label}
         placeholder={placeholder}
         onChange={handleChange}
+        suggestionsActive={suggestionsActive}
       />
       {suggestionsActive && (
         <Suggestions

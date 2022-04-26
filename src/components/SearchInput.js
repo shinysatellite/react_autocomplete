@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@stitches/react";
 import { blackA } from "@radix-ui/colors";
-
+import Vector from "../Vector.svg";
 const StyledLabel = styled("label", {
   fontSize: 15,
   fontWeight: 500,
@@ -14,6 +14,7 @@ const Label = StyledLabel;
 const Flex = styled("div", {
   display: "flex",
   flexDirection: "column",
+  position: "relative",
 });
 
 const Input = styled("input", {
@@ -29,20 +30,36 @@ const Input = styled("input", {
   color: "black",
   backgroundColor: "white",
   boxShadow: `0 0 0 1px #D0D5DD`,
+  position: "relative",
   "&:focus": { boxShadow: `0 0 0 2px #e4e2e4` },
 });
 
-const SearchInput = ({ value, label, placeholder, onChange }) => (
+const Img = styled("img", {
+  width: 23,
+  position: "absolute",
+  bottom: 12,
+  right: 5,
+});
+
+const SearchInput = ({
+  value,
+  label,
+  placeholder,
+  suggestionsActive,
+  onChange,
+}) => (
   <Flex>
     <Label htmlFor="firstName" css={{ lineHeight: "35px", marginRight: 15 }}>
       {label}
     </Label>
     <Input
       type="text"
+      className="seach_input"
       value={value}
       placeholder={placeholder}
       onChange={onChange}
     />
+    {suggestionsActive && <Img src={Vector} alt="vector" />}
   </Flex>
 );
 
