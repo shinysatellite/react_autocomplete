@@ -1,6 +1,54 @@
-# Getting Started with Create React App
+# AUTOCOMPLETE TEST(REACT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## TASK
+
+The task is to implement an autocomplete input field component using following technologies:
+-JavaScript / TypeScript
+-React
+-Radix Primitives
+-Stitches
+-Storybook (optional)
+
+### The API of the component should consist of the following properties:
+
+#### label
+
+label of the input
+-placeholder
+placeholder of the input (when it's empty)
+
+#### getDataSource
+
+function that takes a filterValue as a parameter and returns promise that resolves to data source - an array of matching values, where a single item of an array is an object with id and label properties
+label is a property that is displayed (and filter value matches against)
+id is a property that is set as current value
+
+#### value
+
+current value (id from the data source)
+
+#### filterValue
+
+current filter value (text in the input that's also the parameter of getDataSource function)
+
+#### exactMatch
+
+boolean flag, if set to true, value is valid only if it's contained within data source, invalid value will be cleared on field blur
+
+#### onChange
+
+function that is called every time the value changes with event that caused the change as the first and value as the second parameter
+
+#### onFilterValueChange
+
+function that is called every time the filterValue changes with event that caused the change as the first and filterValue as the second parameter
+
+### Popover with autocomplete suggestions is closed by default, opens after the user starts typing and closes either on click away or on value select.
+
+You may load the sample data from this API: https://api.stg.behavera.com/v1/data_sources/preferences?lang=EN
+Use e.g. payload.industries property of the response body as a static data source.
+
+Visually you may draw inspiration from this figma file https://www.figma.com/file/phPjqQjvwBXrHoFCmEPJrT/Dropdown?node-id=0%3A1
 
 ## Available Scripts
 

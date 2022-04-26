@@ -2,82 +2,67 @@ import { useState } from "react";
 import SearchInput from "./SearchInput";
 import Suggestions from "./Suggestions";
 
-const AutoComplete = ({ data, label }) => {
+const AutoComplete = ({
+  label,
+  placeholder,
+  getDataSource,
+  value,
+  filterValue,
+  exactMatch,
+  onChange,
+  onFilterValueChange,
+}) => {
   const [suggestions, setSuggestions] = useState([]);
-  const [suggestionIndex, setSuggestionIndex] = useState(0);
+  const [suggestionIndex, setSuggestionIndex] = useState(value);
   const [suggestionsActive, setSuggestionsActive] = useState(false);
-  const [value, setValue] = useState("");
+  const [input, setInput] = useState(filterValue);
 
   const handleChange = (e) => {
-    const query = e.target.value.toLowerCase();
-    setValue(query);
-    if (query.length > 1) {
-      const filterSuggestions = data.filter(
-        (suggestion) => suggestion.toLowerCase().indexOf(query) > -1
-      );
-      setSuggestions(filterSuggestions);
-      setSuggestionsActive(true);
-    } else {
-      setSuggestionsActive(false);
-    }
+    onFilterValueChange(e, e.target.value);
+    setInput(e.target.value);
+    const filteredSuggestions = getDataSource(e.target.value);
+    setSuggestions(filteredSuggestions);
+
+    if (filteredSuggestions && filteredSuggestions.length > 0) {
+      if (exactMatch) {
+        const extractFilteredSuggestions = filteredSuggestions.filter(
+          (suggestion) => suggestion.label === e.target.value
+        );
+        setSuggestions(extractFilteredSuggestions);
+        if (extractFilteredSuggestions && extractFilteredSuggestions.length > 0)
+          setSuggestionsActive(true);
+        else setSuggestionsActive(false);
+      } else {
+        setSuggestions(filteredSuggestions);
+        setSuggestionsActive(true);
+      }
+    } else setSuggestionsActive(false);
   };
 
-  const handleClick = (e) => {
+  const handleClick = (e, suggestion) => {
+    onChange(e, suggestion.value);
+    setSuggestionIndex(suggestion.value);
     setSuggestions([]);
-    setValue(e.target.innerText);
+    setInput(suggestion.label);
     setSuggestionsActive(false);
-  };
-
-  const handleKeyDown = (e) => {
-    // UP ARROW
-    if (e.keyCode === 38) {
-      if (suggestionIndex === 0) {
-        return;
-      }
-      setSuggestionIndex(suggestionIndex - 1);
-    }
-    // DOWN ARROW
-    else if (e.keyCode === 40) {
-      if (suggestionIndex - 1 === suggestions.length) {
-        return;
-      }
-      setSuggestionIndex(suggestionIndex + 1);
-    }
-    // ENTER
-    else if (e.keyCode === 13) {
-      setValue(suggestions[suggestionIndex]);
-      setSuggestionIndex(0);
-      setSuggestionsActive(false);
-    }
-  };
-
-  const Suggestions1 = () => {
-    return (
-      <ul className="suggestions">
-        {suggestions.map((suggestion, index) => {
-          return (
-            <li
-              className={index === suggestionIndex ? "active" : ""}
-              key={index}
-              onClick={handleClick}
-            >
-              {suggestion}
-            </li>
-          );
-        })}
-      </ul>
-    );
   };
 
   return (
     <div className="autocomplete">
       <SearchInput
-        value={value}
+        value={input}
         label={label}
+        placeholder={placeholder}
         onChange={handleChange}
-        onKeyDown={handleKeyDown}
       />
-      {suggestionsActive && <Suggestions />}
+      {suggestionsActive && (
+        <Suggestions
+          suggestions={suggestions}
+          suggestionIndex={suggestionIndex}
+          handleClick={handleClick}
+          setSuggestionsActive={setSuggestionsActive}
+        />
+      )}
     </div>
   );
 };

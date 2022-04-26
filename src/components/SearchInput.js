@@ -1,8 +1,6 @@
 import React from "react";
 import { styled } from "@stitches/react";
 import { blackA } from "@radix-ui/colors";
-import { whiteA } from "@radix-ui/colors";
-import * as LabelPrimitive from "@radix-ui/react-label";
 
 const StyledLabel = styled("label", {
   fontSize: 15,
@@ -11,31 +9,29 @@ const StyledLabel = styled("label", {
   userSelect: "none",
 });
 
-// Exports
 const Label = StyledLabel;
 
-// Your app...
 const Flex = styled("div", {
   display: "flex",
   flexDirection: "column",
 });
 const Input = styled("input", {
   all: "unset",
-  width: 200,
+  width: 256,
   alignItems: "center",
   justifyContent: "center",
   borderRadius: 4,
   padding: "0 10px",
-  height: 35,
+  height: 40,
   fontSize: 15,
   lineHeight: 1,
   color: "black",
   backgroundColor: "white",
   boxShadow: `0 0 0 1px ${blackA.blackA9}`,
-  "&:focus": { boxShadow: `0 0 0 2px black` },
+  "&:focus": { boxShadow: `0 0 0 2px #e4e2e4` },
 });
 
-const SearchInput = ({ value, label, onChange, onKeyDown }) => (
+const SearchInput = ({ value, label, placeholder, onChange }) => (
   <Flex>
     <Label htmlFor="firstName" css={{ lineHeight: "35px", marginRight: 15 }}>
       {label}
@@ -43,10 +39,9 @@ const SearchInput = ({ value, label, onChange, onKeyDown }) => (
     <Input
       type="text"
       id="firstName"
-      defaultValue="Pedro Duarte"
       value={value}
+      placeholder={placeholder}
       onChange={onChange}
-      onKeyDown={onKeyDown}
     />
   </Flex>
 );
