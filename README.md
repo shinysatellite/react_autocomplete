@@ -45,10 +45,14 @@ function that is called every time the filterValue changes with event that cause
 
 ### Popover with autocomplete suggestions is closed by default, opens after the user starts typing and closes either on click away or on value select.
 
-You may load the sample data from this API: https://api.stg.behavera.com/v1/data_sources/preferences?lang=EN
+### The sample data from this API:
+
+https://api.stg.behavera.com/v1/data_sources/preferences?lang=EN
 Use e.g. payload.industries property of the response body as a static data source.
 
-Visually you may draw inspiration from this figma file https://www.figma.com/file/phPjqQjvwBXrHoFCmEPJrT/Dropdown?node-id=0%3A1
+### Design
+
+https://www.figma.com/file/phPjqQjvwBXrHoFCmEPJrT/Dropdown?node-id=0%3A1
 
 ## Available Scripts
 
