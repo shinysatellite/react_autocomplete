@@ -15,6 +15,7 @@ const Flex = styled("div", {
   display: "flex",
   flexDirection: "column",
 });
+
 const Input = styled("input", {
   all: "unset",
   width: 256,
@@ -27,7 +28,7 @@ const Input = styled("input", {
   lineHeight: 1,
   color: "black",
   backgroundColor: "white",
-  boxShadow: `0 0 0 1px ${blackA.blackA9}`,
+  boxShadow: `0 0 0 1px #D0D5DD`,
   "&:focus": { boxShadow: `0 0 0 2px #e4e2e4` },
 });
 
@@ -38,7 +39,6 @@ const SearchInput = ({ value, label, placeholder, onChange }) => (
     </Label>
     <Input
       type="text"
-      id="firstName"
       value={value}
       placeholder={placeholder}
       onChange={onChange}

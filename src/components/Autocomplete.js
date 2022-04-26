@@ -29,6 +29,7 @@ const AutoComplete = ({
           (suggestion) => suggestion.label === e.target.value
         );
         setSuggestions(extractFilteredSuggestions);
+
         if (extractFilteredSuggestions && extractFilteredSuggestions.length > 0)
           setSuggestionsActive(true);
         else setSuggestionsActive(false);

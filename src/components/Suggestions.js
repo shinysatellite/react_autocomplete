@@ -3,7 +3,7 @@ import { styled } from "@stitches/react";
 import { mauve, blackA } from "@radix-ui/colors";
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 
-const SCROLLBAR_SIZE = 10;
+const SCROLLBAR_SIZE = 5;
 
 const StyledScrollArea = styled(ScrollAreaPrimitive.Root, {
   width: 275,
@@ -25,7 +25,7 @@ const StyledScrollbar = styled(ScrollAreaPrimitive.Scrollbar, {
   userSelect: "none",
   width: "100%",
   touchAction: "none",
-  background: blackA.blackA6,
+  background: "white",
   transition: "background 160ms ease-out",
   "&:hover": { background: blackA.blackA8 },
   '&[data-orientation="vertical"]': { width: SCROLLBAR_SIZE },
@@ -37,8 +37,8 @@ const StyledScrollbar = styled(ScrollAreaPrimitive.Scrollbar, {
 
 const StyledThumb = styled(ScrollAreaPrimitive.Thumb, {
   flex: 1,
-  background: mauve.mauve10,
-  borderRadius: SCROLLBAR_SIZE,
+  background: "#C9D2DE",
+  borderRadius: 24,
   position: "relative",
   "&::before": {
     content: '""',
@@ -74,11 +74,11 @@ const Tag = styled("div", {
   padding: 10,
   borderRadius: 5,
   "&.active": {
-    backgroundColor: `${mauve.mauve6}`,
+    backgroundColor: `#EBEEF1`,
   },
   "&:hover": {
     cursor: "pointer",
-    backgroundColor: `${mauve.mauve6}`,
+    backgroundColor: `#EBEEF1`,
   },
 });
 
@@ -90,19 +90,20 @@ const Suggestions = ({
 }) => {
   const wrapperRef = useRef(null);
 
+  /** Detect the mouse click event outside of Suggestions component */
   useEffect(() => {
-    function handleClickOutside(event) {
+    const handleClickOutside = (event) => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         setSuggestionsActive(false);
       }
-    }
+    };
     // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [wrapperRef]);
+  }, [wrapperRef, setSuggestionsActive]);
 
   return (
     <ScrollArea ref={wrapperRef}>
